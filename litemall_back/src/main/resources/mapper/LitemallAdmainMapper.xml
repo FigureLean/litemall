@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.figure.litemall_back.mapper.LitemallAdmainMapper">
+  <resultMap id="BaseResultMap" type="org.figure.litemall_back.po.LitemallAdmain">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="username" jdbcType="varchar" property="username" />
+    <result column="password" jdbcType="varchar" property="password" />
+    <result column="last_login_ip" jdbcType="varchar" property="lastLoginIp" />
+    <result column="last_login_time" jdbcType="TIMESTAMP" property="lastLoginTime" />
+    <result column="avatar" jdbcType="varchar" property="avatar" />
+    <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="deleted" jdbcType="tinyint" property="deleted" />
+    <result column="role_ids" jdbcType="VARCHAR" property="roleIds" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from litemall_admin
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="org.figure.litemall_back.po.LitemallAdmain">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into litemall_admin (username, password, last_login_ip, 
+      last_login_time, avatar, add_time, 
+      update_time, deleted, role_ids
+      )
+    values (#{username,jdbcType=varchar(63)}, #{password,jdbcType=varchar(63)}, #{lastLoginIp,jdbcType=varchar(63)}, 
+      #{lastLoginTime,jdbcType=datetime}, #{avatar,jdbcType=varchar(255)}, #{addTime,jdbcType=DATETIME}, 
+      #{updateTime,jdbcType=DATETIME}, #{deleted,jdbcType=tinyint(1)}, #{roleIds,jdbcType=VARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="org.figure.litemall_back.po.LitemallAdmain">
+    update litemall_admin
+    set username = #{username,jdbcType=varchar(63)},
+      password = #{password,jdbcType=varchar(63)},
+      last_login_ip = #{lastLoginIp,jdbcType=varchar(63)},
+      last_login_time = #{lastLoginTime,jdbcType=datetime},
+      avatar = #{avatar,jdbcType=varchar(255)},
+      add_time = #{addTime,jdbcType=DATETIME},
+      update_time = #{updateTime,jdbcType=DATETIME},
+      deleted = #{deleted,jdbcType=tinyint(1)},
+      role_ids = #{roleIds,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, username, password, last_login_ip, last_login_time, avatar, add_time, 
+    update_time, deleted, role_ids
+    from litemall_admin
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, username, password, last_login_ip, last_login_time, avatar, add_time, 
+    update_time, deleted, role_ids
+    from litemall_admin
+  </select>
+</mapper>
