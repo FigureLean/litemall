@@ -2,7 +2,7 @@ import request from "../utils/request.ts";
 
 export function login(query) {
     return request({
-      url: '/admain/login',
+      url: '/admin/login',
       method: 'post',
       params: query
     })

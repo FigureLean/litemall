@@ -54,4 +54,7 @@
     update_time, deleted, role_ids
     from litemall_admin
   </select>
+    <select id="selectByUsername" resultType="org.figure.litemall_back.po.LitemallAdmain">
+      select * from TABLE ( litemall_admin ) where username = #{username}
+    </select>
 </mapper>

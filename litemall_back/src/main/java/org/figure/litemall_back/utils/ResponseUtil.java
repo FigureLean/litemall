@@ -1,5 +1,7 @@
 package org.figure.litemall_back.utils;
 
+import org.figure.litemall_back.constant.HttpResponseConst;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,18 +19,19 @@ public class ResponseUtil {
 
     public static Object ok() {
         Map<String, Object> obj = new HashMap<String, Object>();
-        obj.put("errno", 200);
+        obj.put("errno", HttpResponseConst.CODE_SUCCESS);
         obj.put("errmsg", "成功");
         return obj;
     }
     public static Object ok(Object data) {
         Map<String, Object> obj = new HashMap<String, Object>();
-        obj.put("errno", 200);
+        obj.put("errno", HttpResponseConst.CODE_SUCCESS);
         obj.put("errmsg", "成功");
         obj.put("data", data);
         return obj;
     }
 
+    //TODO: 添加一下mybatis pagehelper插件
 //    public static Object okList(List list) {
 //        Map<String, Object> data = new HashMap<String, Object>();
 //        data.put("list", list);

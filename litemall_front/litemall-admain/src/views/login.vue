@@ -18,8 +18,8 @@
 </template>
 
 <script lang="ts" setup>
-import { reactive,ref } from 'vue'
-import {login} from '../api/login'
+import { reactive } from 'vue'
+import {login} from "../api/login"
 
 
 const formInline = reactive({
@@ -27,9 +27,6 @@ const formInline = reactive({
   password: '',
 })
 
-// const onSubmit = () => {
-//   console.log('submit!')
-// }
 const onSubmit = async () => {
   try {
     const response = await login(formInline);

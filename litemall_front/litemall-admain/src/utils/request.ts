@@ -8,7 +8,8 @@ axios.defaults.headers['Content-Type'] = 'application/json;charset=utf-8';
 // 创建axios实例
 const service = axios.create({
     // axios中请求配置有baseURL选项，表示请求URL公共部分
-    baseURL: import.meta.env.VITE_APP_BASE_API,
+    // baseURL: import.meta.env.VITE_APP_BASE_API,
+    baseURL:"http://localhost:9090",
     // baseURL: "http://localhost:8085/mumudemo/",
     timeout: 5000 // 请求超时时间
 });
@@ -67,7 +68,7 @@ service.interceptors.response.use(
           type: 'error'
         });
         return Promise.reject('error');
-      } else if (res.errno !== 200) {
+      } else if (res.errno != 200) {
         // 非5xx的错误属于业务错误，留给具体页面处理
         return Promise.reject(response);
       } else {
